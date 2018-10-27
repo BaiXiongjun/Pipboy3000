@@ -1,48 +1,60 @@
-
+//Libraries used
 #include <SPI.h>
 #include <MFRC522.h>
 
+//setup for RFID
 #define RST_PIN         9           // Configurable, see typical pin layout above
 #define SS_PIN          10          // Configurable, see typical pin layout above
-
 MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance
 
-#define outputA0 2
-#define outputB0 3
-String inputString = "";         // a String to hold incoming data
-bool stringComplete = false;  // whether the string is complete
-int timeout = millis();
-bool req = false;
-int now = 0;
-byte ID_BLOCK = 1;
-bool ID = true;
-int aState = 0;
-int aLastState = 0;
+//Setup for one Rotary encoder
+#define outputA0 2              // output 1 (CLK) of rotary encoder
+#define outputB0 3              // output 2 (DT) of rotary encoder
+#define switch 7                // button (SW) otput of rotary encoder
+#define btnTimeout 500          // timeout for the switch
+
+//create Variables
+String inputString = "";        // a String to hold incoming data
+bool stringComplete = false;    // whether the string is complete
+int timeout = millis();         // timeout variable for button spam prevention
+bool req = false;               // has python initiated a connection?
+int now = 0;                    // variable to hold the current millis, used for spam prevention
+byte ID_BLOCK = 1;              // Location of the ID on the RFID tag
+bool ID = true;                 // variable to prevent double serial output
+int aState = 0;                 // output 1 of Rotary encoder
+int aLastState = 0;             // last state of output 1
+
+//SETUP
 void setup() {
+
   // initialize serial:
   Serial.begin(9600);
   // reserve 50 bytes for the inputString:
   inputString.reserve(50);
-  pinMode(7, INPUT);
+
+  // set pin modes
+  pinMode(switch, INPUT);
   pinMode (outputA0, INPUT);
   pinMode (outputB0, INPUT);
-  aLastState = digitalRead(outputA0);
+  aLastState = digitalRead(outputA0);   //setup for rotary encoder
 
-  SPI.begin();                                                  // Init SPI bus
-  mfrc522.PCD_Init();                                              // Init MFRC522 card
+  // init RFID (SPI)
+  SPI.begin();                  // Init SPI bus
+  mfrc522.PCD_Init();           // Init MFRC522 card
 
 }
 
 void loop() {
 
-  now = millis();
+  now = millis();               //get current execution time
+  // do something if button has bee pressed
+  if (digitalRead(switch) == 0 && now - timeout >= btnTimeout) {
 
-  if (digitalRead(7) == 0 && now - timeout >= 1000) {
     timeout = millis();
-    Serial.write("button active\n");
+    //Serial.write("button active\n");
   }
-  wheel();
-  readRFID();
+  wheel();                      // read rotary encoder
+  readRFID();                   // SERIAL read and RFID 
 
 }
 
