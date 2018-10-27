@@ -1,0 +1,2 @@
+name:Armored Vault 101 jumpsuit,type:Apparel,STR:0,armortype:ARMOR,dmg:12,value:180,weight:15,multiple:False,cnd:4;idlist:aDcyWOWpmzOZ
+name:Laser pistol,type:Weapons,dmg:12,value:320,ammotype:Energy cell,weight:3,multiple:False,magazine:30,cnd:59;idlist:D7utGzPLbUyg
