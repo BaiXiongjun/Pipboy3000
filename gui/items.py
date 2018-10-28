@@ -13,87 +13,11 @@ class items(object):
         self.player = PLAYER
         self.select = select
         self.font2 = pygame.font.Font(SETUP['font'], int(((winsize[0]/100)*self.sizes['text_h'])//1.4))
-        # print(self.oneph)
-        self.icons = {
-        'Combat shotgun':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Combat_shotgun_icon.png"),[25,35]],
-        'Assault rifle':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Assault_rifle_icon.png"),[20,35]],
-        '.32 pistol':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/32_pistol_icon.png"),[20,35]],
-        '10mm pistol':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/10mm_pistol_icon.png"),[20,35]],
-        'Chinese pistol':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Chinese_pistol_icon.png"),[25,35]],
-        'Dart Gun':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Dart_gun_icon.png"),[20,35]],
-        'Scoped .44 Magnum':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Scoped_.44_magnum_icon.png"),[20,35]],
-        'BB gun':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/BB_gun_icon.png"),[20,35]],
-        'Chinese assault rifle':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Assault_rifle_icon.png"),[20,35]],
-        'Hunting rifle':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Hunting_rifle_icon.png"),[20,35]],
-        'Lincoln\'s repeater':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Lincoln's_repeater_icon.png"),[20,35]],
-        'Railway rifle':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Railway_rifle_icon.png"),[20,35]],
-        '10mm submachine gun':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/10mm_SMG_icon.png"),[20,35]],
-        'Combat knife':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/combat_knife_icon.png"),[20,35]],
-        'Knife':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/knife_icon.png"),[20,35]],
-        'Laser pistol':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Laser_pistol_icon.png"),[20,35]],
-        'Mesmetron':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Mesmetron_icon.png"),[20,35]],
-        'Plasma pistol':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Plasma_pistol_icon.png"),[25,35]],
-        'Rolling pin':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Rolling_pin_icon.png"),[20,35]],
-        'Sawed-off shotgun':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Sawed-off_shotgun_icon.png"),[20,35]],
-        'Sledgehammer':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Sledgehammer_icon.png"),[22,35]],
-        'Sniper rifle':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Sniper_rifle_icon.png"),[20,35]],
-        'Tire iron':[pygame.image.load("gui/FALLOUT_ICONS/WEAPONS/Tire_iron_icon.png"),[20,35]],
-        #Apparel Icons
-        'Combat armor':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_combat_armor.png"),[12.5,35]],
-        'Wasteland wanderer outfit':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_wasteland_wanderer_outfit.png"),[12.5,35]],
-        'Wasteland settler outfit':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_wasteland_wanderer_outfit.png"),[12.5,35]],
-        'Wasteland legend outfit':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_merc_outfit.png"),[12.5,35]],
-        'Armored Vault 101 jumpsuit':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_armored_vault_suit.png"),[12.5,35]],
-        'Vault 101 jumpsuit':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_vault_suit.png"),[12.5,35]],
-        'Vault 101 security armor':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_vault_security_armor.png"),[12.5,35]],
-        'Mysterious Stranger':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_vault_suit.png"),[12.5,35]],
-        'Naughty nightwear':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_pajamas.png"),[12.5,35]],
-        'Sexy sleepwear':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_pajamas.png"),[12.5,35]],
-        'Power armor':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_power_armor.png"),[12.5,35]],
-        'Pre-War businesswear':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_business_suit.png"),[12.5,35]],
-        'Pre-War casualwear':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_prewar_outfit.png"),[12.5,35]],
-        'Pre-War parkstroller':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_prewar_outfit.png"),[12.5,35]],
-        'Pre-War relaxedwear':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_prewar_outfit.png"),[12.5,35]],
-        'Pre-War spring outfit':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_prewar_outfit.png"),[12.5,35]],
-        "Sheriff's duster":[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_cowboy_duster_outfit.png"),[12.5,35]],
-        'Leather armor':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_leather_armor.png"),[12.5,35]],
-        'Wanderer\'s leather armor':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_leather_armor.png"),[15,30]],
-        'Hockey mask':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_hocky_mask.png"),[15,25]],
-        'Sheriff\'s hat':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_sheriffs_hat.png"),[25,20]],
-        'Pre-War bonnet':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_prewar_hat.png"),[23,20]],
-        'Makeshift gas mask':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_makeshift_gasmask.png"),[15,25]],
-        'Bandana':[pygame.image.load("gui/FALLOUT_ICONS/APPAREL/Icon_bandana.png"),[20,25]],
-        #Aid icons
-        'Beer':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_drink.png"),[20,35]],
-        'Berry Mentats':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_mentats.png"),[20,25]],
-        'Orange Mentats':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_mentats.png"),[20,25]],
-        'Grape Mentats':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_mentats.png"),[20,25]],
-        'Mentats':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_mentats.png"),[20,25]],
-        'Bubblegum':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_bubble_gum.png"),[20,20]],
-        'Buffout':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_Buffout.png"),[20,25]],
-        'Dandy Boy Apples':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_dandy_apples.png"),[20,25]],
-        'Dirty water':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_water.png"),[15,25]],
-        'Fancy Lads Snack Cakes':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_fancy_cakes.png"),[20,25]],
-        'Fresh Apple':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_apple.png"),[15,25]],
-        'Fresh carrot':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_carrot.png"),[15,25]],
-        'InstaMash':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_InstaMash.png"),[20,25]],
-        'Jet':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_jet.png"),[15,25]],
-        'RadAway':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_RadAway.png"),[15,30]],
-        'Ultrajet':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_jet.png"),[15,25]],
-        'Nuka-Cola':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_cola.png"),[15,25]],
-        'Nuka-Cola Quantum':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_cola.png"),[15,25]],
-        'Psycho':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_psycho.png"),[15,25]],
-        'Purified water':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_water.png"),[15,25]],
-        'Rad-X':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_Rad-X.png"),[15,25]],
-        'Salisbury Steak':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_salisbury_steak.png"),[15,25]],
-        'Med-X':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_Med-X.png"),[15,25]],
-        'Stimpack':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_stimpak.png"),[15,25]],
-        'Sugar Bombs':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_Sugar_Bombs.png"),[10,25]],
-        'Vodka':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_vodka.png"),[15,25]],
-        'Scotch':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_scotch.png"),[15,25]],
-        'Whiskey':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_whiskey.png"),[15,25]],
-        'Wine':[pygame.image.load("gui/FALLOUT_ICONS/AID/Icon_wine.png"),[15,25]]
-        }
+        rawIcons = {}
+        for element in SETUP["icons"]:
+            rawIcons[element]=[pygame.image.load(SETUP["icons"][element][0]),SETUP["icons"][element][1]]
+        self.icons = rawIcons
+        print(self.icons)
         self.cycles=0
         self.raw = []
         self.conf = []

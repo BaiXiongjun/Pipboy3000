@@ -54,7 +54,7 @@ void loop() {
     //Serial.write("button active\n");
   }
   wheel();                      // read rotary encoder
-  readRFID();                   // SERIAL read and RFID 
+  readRFID();                   // SERIAL read and RFID
 
 }
 
