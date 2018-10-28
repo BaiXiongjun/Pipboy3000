@@ -14,7 +14,7 @@ from time import sleep
 import serial
 
 #read the config file
-SETUP = json.loads(open("configs/main.conf","r").read())
+SETUP = json.loads(open("configs/main.JSON","r").read())
 print("\nCONFIG:\n",SETUP,"\n")
 def testSerial():
     try:
