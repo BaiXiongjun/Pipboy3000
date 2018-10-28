@@ -15,7 +15,7 @@ import serial
 
 #read the config file
 SETUP = json.loads(open("configs/config.JSON","r").read())
-print("\nCONFIG:\n",SETUP,"\n")
+print("\nCONFIG:\n",json.dumps(SETUP, indent=4),"\n")
 def testSerial():
     try:
         conn = serial.Serial("COM9",timeout=20)
