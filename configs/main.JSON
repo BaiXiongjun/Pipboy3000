@@ -1,9 +1,9 @@
 {
   "version":"a1.0_r20181006",
   "info":"This part specifies the general program configuration.\n\nuseRFID:\n - true: uses the UUID it gets from the RFID reader.\n  - false: uses user input from commandline.\n\nloadCal: enables or disables loading quests from google calendar\n\nautoload: enables loading from calendar without the need to say yes\n\n",
+
   "useRFID":true,
   "Serial":true,
-
   "loadNotes":false,
   "loadCal":false,
   "autoload":true,
