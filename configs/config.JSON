@@ -13,7 +13,7 @@
   "clientSecret_G":"configs/Gservice/client_secrets.json",
   "calID":"voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
   "events":"configs/events.json",
-  
+
   "fullscreen":false,
   "effectlist":["STR","PE","EN","CH","IN","AG","LU"],
   "color" : [0,255,0],
