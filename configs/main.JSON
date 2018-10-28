@@ -4,16 +4,20 @@
 
   "useRFID":true,
   "Serial":true,
+
   "loadNotes":false,
+
   "loadCal":false,
   "autoload":true,
+  "token":"configs/Gservice/token.json",
+  "clientSecret_G":"configs/Gservice/client_secrets.json",
   "calID":"voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
 
-  "fullscreen":true,
+  "fullscreen":false,
   "effectlist":["STR","PE","EN","CH","IN","AG","LU"],
   "color" : [0,255,0],
   "icon_path":"images/images.png",
-  "font":"configs/monofonto.ttf",
+  "font":"configs/fonts/monofonto.ttf",
   "background":[0,0,0],
   "header_draw": {
     "info":"This is the header_draw object. it holds parameters for drawing most of the stuff you see. These values are percentage values, so header_line_thick:0.5496 means that the line thickness is 0.5496% of the screen height.",

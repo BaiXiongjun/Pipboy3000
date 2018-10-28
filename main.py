@@ -52,10 +52,10 @@ def is_connected(hostname):
 def calendar():
     # Uses the Google Calendar API and the calendarId from main.conf to load the upcoming 10 events from specified calendar.
 
-    store = file.Storage('configs/token.json')
+    store = file.Storage(SETUP["token"])
     creds = store.get()
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('configs/client_secrets.json', SCOPES)
+        flow = client.flow_from_clientsecrets(SETUP["cliSecret_G"], SCOPES)
         creds = tools.run_flow(flow, store)
     service = build('calendar', 'v3', http=creds.authorize(Http()))
 
