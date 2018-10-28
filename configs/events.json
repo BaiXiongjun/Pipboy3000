@@ -1,0 +1,167 @@
+[
+    {
+        "kind": "calendar#event",
+        "etag": "\"3078321195654000\"",
+        "id": "_6lh64p32c4ojadhlccojg",
+        "status": "confirmed",
+        "htmlLink": "https://www.google.com/calendar/event?eid=XzZsaDY0cDMyYzRvamFkaGxjY29qZyB2b2ViNGUxM241M20zbGNobzRpZXZwNnBiMjZkanFibEBp",
+        "created": "2018-10-10T03:36:37.000Z",
+        "updated": "2018-10-10T08:36:37.827Z",
+        "summary": "Coruscant - Omega Battles",
+        "description": "https://swgohevents.com/event/ewok-empire\n\nRequires: Ewok & Empire",
+        "creator": {
+            "email": "voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
+            "displayName": "https://swgohevents.com/ical",
+            "self": true
+        },
+        "organizer": {
+            "email": "voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
+            "displayName": "https://swgohevents.com/ical",
+            "self": true
+        },
+        "start": {
+            "date": "2018-10-28"
+        },
+        "end": {
+            "date": "2018-10-29"
+        },
+        "visibility": "public",
+        "iCalUID": "5bbdba1565c18",
+        "sequence": 0,
+        "reminders": {
+            "useDefault": true
+        }
+    },
+    {
+        "kind": "calendar#event",
+        "etag": "\"3081085239834000\"",
+        "id": "_6lh68cj460sm4dpjcph62",
+        "status": "confirmed",
+        "htmlLink": "https://www.google.com/calendar/event?eid=XzZsaDY4Y2o0NjBzbTRkcGpjcGg2MiB2b2ViNGUxM241M20zbGNobzRpZXZwNnBiMjZkanFibEBp",
+        "created": "2018-10-26T03:30:19.000Z",
+        "updated": "2018-10-26T08:30:19.917Z",
+        "summary": "Credit Heist - Resource Event",
+        "description": "https://swgohevents.com/event/credit-heist\n\nOccurs every 7-12 days\n\nRequires Scoundrels",
+        "creator": {
+            "email": "voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
+            "displayName": "https://swgohevents.com/ical",
+            "self": true
+        },
+        "organizer": {
+            "email": "voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
+            "displayName": "https://swgohevents.com/ical",
+            "self": true
+        },
+        "start": {
+            "date": "2018-10-29"
+        },
+        "end": {
+            "date": "2018-10-30"
+        },
+        "visibility": "public",
+        "iCalUID": "5bd2d09b73fba",
+        "sequence": 0,
+        "reminders": {
+            "useDefault": true
+        }
+    },
+    {
+        "kind": "calendar#event",
+        "etag": "\"3076865089946000\"",
+        "id": "_6lh64chpckp30o9g6srji",
+        "status": "confirmed",
+        "htmlLink": "https://www.google.com/calendar/event?eid=XzZsaDY0Y2hwY2twMzBvOWc2c3JqaSB2b2ViNGUxM241M20zbGNobzRpZXZwNnBiMjZkanFibEBp",
+        "created": "2018-10-01T17:22:24.000Z",
+        "updated": "2018-10-01T22:22:24.973Z",
+        "summary": "Dathomir - Omega Battles",
+        "description": "https://swgohevents.com/event/dathomir-omega-battles\n\nRequires: Jedi & Tusken Characters",
+        "creator": {
+            "email": "voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
+            "displayName": "https://swgohevents.com/ical",
+            "self": true
+        },
+        "organizer": {
+            "email": "voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
+            "displayName": "https://swgohevents.com/ical",
+            "self": true
+        },
+        "start": {
+            "date": "2018-10-30"
+        },
+        "end": {
+            "date": "2018-10-31"
+        },
+        "visibility": "public",
+        "iCalUID": "5bb29e20a0779",
+        "sequence": 0,
+        "reminders": {
+            "useDefault": true
+        }
+    },
+    {
+        "kind": "calendar#event",
+        "etag": "\"3079228864930000\"",
+        "id": "_6lh66d316pij0c1ic8p6c",
+        "status": "confirmed",
+        "htmlLink": "https://www.google.com/calendar/event?eid=XzZsaDY2ZDMxNnBpajBjMWljOHA2YyB2b2ViNGUxM241M20zbGNobzRpZXZwNnBiMjZkanFibEBp",
+        "created": "2018-10-15T09:40:32.000Z",
+        "updated": "2018-10-15T14:40:32.465Z",
+        "summary": "Defense of Dathomir - Special Event",
+        "description": "https://swgohevents.com/event/defense-dathormir\n\n",
+        "creator": {
+            "email": "voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
+            "displayName": "https://swgohevents.com/ical",
+            "self": true
+        },
+        "organizer": {
+            "email": "voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
+            "displayName": "https://swgohevents.com/ical",
+            "self": true
+        },
+        "start": {
+            "date": "2018-10-30"
+        },
+        "end": {
+            "date": "2018-11-01"
+        },
+        "visibility": "public",
+        "iCalUID": "5bc4a6e002b2f",
+        "sequence": 0,
+        "reminders": {
+            "useDefault": true
+        }
+    },
+    {
+        "kind": "calendar#event",
+        "etag": "\"3076900152972000\"",
+        "id": "_6lh64cj568sm4d3561hm8",
+        "status": "confirmed",
+        "htmlLink": "https://www.google.com/calendar/event?eid=XzZsaDY0Y2o1NjhzbTRkMzU2MWhtOCB2b2ViNGUxM241M20zbGNobzRpZXZwNnBiMjZkanFibEBp",
+        "created": "2018-10-01T22:14:35.000Z",
+        "updated": "2018-10-02T03:14:36.486Z",
+        "summary": "Home One - Fleet Mastery",
+        "description": "https://swgohevents.com/event/home-one-fleet-mastery\n\n",
+        "creator": {
+            "email": "voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
+            "displayName": "https://swgohevents.com/ical",
+            "self": true
+        },
+        "organizer": {
+            "email": "voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
+            "displayName": "https://swgohevents.com/ical",
+            "self": true
+        },
+        "start": {
+            "date": "2018-10-31"
+        },
+        "end": {
+            "date": "2018-11-01"
+        },
+        "visibility": "public",
+        "iCalUID": "5bb2e29b4e0cd",
+        "sequence": 0,
+        "reminders": {
+            "useDefault": true
+        }
+    }
+]

@@ -79,6 +79,7 @@ def calendar():
     f.close()
 testSerial()
 #get info, wether or not the calendar should be loaded and wether or not it actually can be loaded
+user="n"
 if is_connected("www.google.com"):
     print("\ninternet connection works")
 if is_connected("www.google.com")==False:
@@ -92,6 +93,7 @@ elif SETUP["loadCal"]==False:
 elif SETUP["autoload"]:
     print("autoloading enabled, to disable check the file configs/main.conf")
     user = "y"
+print(user)
 #test connection, config and or user input
 if is_connected("www.google.com") and (user == "y" or user == "yes"):
     print("writing events to configs/events.json\n")
