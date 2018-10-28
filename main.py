@@ -74,8 +74,9 @@ def calendar():
         start = event['start'].get('dateTime', event['start'].get('date'))
         print(start, event['summary'])
         print(event)
-    f = open("configs/events.json","w")
+    f = open(SETUP["events"],"w")
     f.write(json.dumps(events, indent=4))
+    f.close()
 testSerial()
 #get info, wether or not the calendar should be loaded and wether or not it actually can be loaded
 if is_connected("www.google.com"):
