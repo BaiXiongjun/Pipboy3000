@@ -7,7 +7,7 @@
 
   "loadNotes":false,
 
-  "loadCal":false,
+  "loadCal":true,
   "autoload":true,
   "token":"configs/Gservice/token.json",
   "clientSecret_G":"configs/Gservice/client_secrets.json",
