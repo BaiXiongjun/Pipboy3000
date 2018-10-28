@@ -10,7 +10,7 @@
   "loadCal":true,
   "autoload":true,
   "token":"configs/Gservice/token.json",
-  "clientSecret_G":"configs/Gservice/client_secrets.json",
+  "cliSecret_G":"configs/Gservice/client_secrets.json",
   "calID":"voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
   "events":"configs/events.json",
 
