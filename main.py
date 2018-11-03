@@ -12,13 +12,24 @@ import json
 import socket
 from time import sleep
 import serial
+import platform
 
 #read the config file
 SETUP = json.loads(open("configs/config.JSON","r").read())
+
+OS=""
+raw = platform.platform(terse=True).split("-")
+for element in raw:
+    OS += element+" "
+OS = OS.split(" ")[0]
+print(OS)
+
+
 print("\nCONFIG:\n",json.dumps(SETUP, indent=4),"\n")
+
 def testSerial():
     try:
-        conn = serial.Serial("COM9",timeout=20)
+        conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
         sleep(1)
         conn.setDTR(False)
         sleep(1)
@@ -343,7 +354,7 @@ while run:
             pygame.display.update()
             print(select)
             import serial
-            conn = serial.Serial("COM9",timeout=20)
+            conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
             sleep(1)
             conn.setDTR(False)
             sleep(1)
@@ -397,7 +408,7 @@ while run:
             pygame.display.update()
             print(select)
             import serial
-            conn = serial.Serial("COM9",timeout=20)
+            conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
             sleep(1)
             conn.setDTR(False)
             sleep(1)
@@ -444,7 +455,7 @@ while run:
 
             print(select)
             import serial
-            conn = serial.Serial("COM9",timeout=20)
+            conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
             sleep(1)
             conn.setDTR(False)
             sleep(1)
@@ -506,7 +517,7 @@ while run:
             pygame.display.update()
             print(select)
             import serial
-            conn = serial.Serial("COM9",timeout=20)
+            conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
             sleep(1)
             conn.setDTR(False)
             sleep(1)
@@ -557,7 +568,7 @@ while run:
             pygame.display.update()
             print(select)
             import serial
-            conn = serial.Serial("COM9",timeout=20)
+            conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
             sleep(1)
             conn.setDTR(False)
             sleep(1)

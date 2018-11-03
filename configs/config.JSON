@@ -4,11 +4,15 @@
 
   "useRFID":true,
   "Serial":true,
+  "Ports":{
+    "Windows":"COM3",
+    "Linux":""
+  },
 
   "loadNotes":false,
 
-  "loadCal":true,
-  "autoload":true,
+  "loadCal":false,
+  "autoload":false,
   "token":"configs/Gservice/token.json",
   "cliSecret_G":"configs/Gservice/client_secrets.json",
   "calID":"voeb4e13n53m3lcho4ievp6pb26djqbl@import.calendar.google.com",
