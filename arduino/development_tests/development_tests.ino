@@ -175,6 +175,7 @@ void readRFID() {
       stringComplete = false;
     }
     if (inputString == "req_write" && req) {
+      mfrc522.PCD_Init();
       MFRC522::MIFARE_Key key;
       for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
 
@@ -189,7 +190,7 @@ void readRFID() {
       }
       MFRC522::PICC_Type piccType = mfrc522.PICC_GetType(mfrc522.uid.sak);
 
-      byte buffer[34];
+      unsigned char buffer1[34];
       MFRC522::StatusCode status;
       byte len;
 
@@ -198,8 +199,8 @@ void readRFID() {
         ID = false;
       }
       Serial.setTimeout(20000L) ;
-      len = Serial.readBytesUntil('#', (char *) buffer, 30) ;
-      for (byte i = len; i < 30; i++) buffer[i] = ' ';     // pad with spaces
+      len = Serial.readBytesUntil('#', (char *) buffer1, 30) ;
+      for (byte i = len; i < 30; i++) buffer1[i] = ' ';     // pad with spaces
 
       status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, ID_BLOCK, &key, &(mfrc522.uid));
       if (status != MFRC522::STATUS_OK) {
@@ -207,7 +208,7 @@ void readRFID() {
         return;
       }
       // Write block
-      status = mfrc522.MIFARE_Write(ID_BLOCK, buffer, 16);
+      status = mfrc522.MIFARE_Write(ID_BLOCK, buffer1, 16);
       if (status != MFRC522::STATUS_OK) {
         Serial.println("req_write-ERROR:WRITE_FAIL");
         return;
@@ -221,6 +222,7 @@ void readRFID() {
 
     }
     if (inputString == "req_ID" && req) {
+      mfrc522.PCD_Init();
       if (ID) {
         Serial.println("req_ID-READ:START");
         ID = false;
@@ -237,7 +239,7 @@ void readRFID() {
       }
 
       byte buffer1[32];
-      byte len = 32;
+      byte len = sizeof(buffer1);
       status = mfrc522.PCD_Authenticate(MFRC522::PICC_CMD_MF_AUTH_KEY_A, ID_BLOCK, &key, &(mfrc522.uid)); //line 834 of MFRC522.cpp file
       if (status != MFRC522::STATUS_OK) {
         Serial.println("req_ID-ERROR:AUTH_FAIL");
@@ -253,7 +255,7 @@ void readRFID() {
         String ans = "req_ID-SUCCESS:";
         for (uint8_t i = 1; i < 16; i++) {
           if (buffer1[i] != '\n' && buffer1[i] != ' ') {
-            ans += buffer1[i];
+            ans += char(buffer1[i]);
           }
         }
         Serial.println(ans);
@@ -261,6 +263,7 @@ void readRFID() {
         ID = true;
         inputString = "";
         stringComplete = false;
+        
       }
     }
     if (inputString == "req_exit" && req) {
