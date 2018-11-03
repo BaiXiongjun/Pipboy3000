@@ -3,8 +3,8 @@
 #include <MFRC522.h>
 
 //setup for RFID
-#define RST_PIN         7           // Configurable, see typical pin layout above
-#define SS_PIN          0          // Configurable, see typical pin layout above
+#define RST_PIN         4           // Configurable, see typical pin layout above
+#define SS_PIN          0           // Configurable, see typical pin layout above
 MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance
 
 //Setup for one Rotary encoder
@@ -29,9 +29,9 @@ bool req = false;               // has python initiated a connection?
 int now = 0;                    // variable to hold the current millis, used for spam prevention
 byte ID_BLOCK = 1;              // Location of the ID on the RFID tag
 bool ID = true;                 // variable to prevent double serial output
-int a0State = 0;                 // output 1 of Rotary encoder
+int a0State = 0;                 // output 1 of Rotary encoder 0
 int a0LastState = 0;             // last state of output 1
-int a1State = 0;                 // output 1 of Rotary encoder
+int a1State = 0;                 // output 1 of Rotary encoder 1
 int a1LastState = 0;             // last state of output 1
 
 //SETUP
@@ -47,15 +47,15 @@ void setup() {
   pinMode(Items, INPUT);
   pinMode(Data, INPUT);
 
-
-
-
   //rotary encoder
   pinMode(switch, INPUT);
   pinMode (outputA0, INPUT);
   pinMode (outputB0, INPUT);
   a0LastState = digitalRead(outputA0);   //setup for rotary encoder
-  a1LastState = digitalRead(outputA1);   //setup for rotary encoder
+
+  pinMode (outputA1, INPUT);
+  pinMode (outputB1, INPUT);
+  a1LastState = digitalRead(outputA1);
 
   // init RFID (SPI)
   SPI.begin();                  // Init SPI bus
@@ -65,11 +65,16 @@ void setup() {
 
 void loop() {
   buttons();
-  wheel0();                      // read rotary encoder0 (scrollwheel)
-  wheel1();                     //read rotary encoder 1 (option select)
+  wheel0();                     // read rotary encoder0 (scrollwheel)
+  wheel1();                     // read rotary encoder 1 (option select)
   readRFID();                   // SERIAL read and RFID
 
 }
+
+
+
+
+
 void buttons() {
   now = millis();               //get current execution time
   // do something if button has bee pressed
@@ -82,7 +87,7 @@ void buttons() {
     Keyboard.release(KEY_ENTER);
   }
 
-  
+
   if (digitalRead(Stats) == 0) {
     Keyboard.press(KEY_1);
     delay(25);
@@ -263,7 +268,7 @@ void readRFID() {
         ID = true;
         inputString = "";
         stringComplete = false;
-        
+
       }
     }
     if (inputString == "req_exit" && req) {

@@ -23,6 +23,7 @@ for element in raw:
     OS += element+" "
 OS = OS.split(" ")[0]
 print(OS)
+print(SETUP["Ports"][OS])
 
 
 print("\nCONFIG:\n",json.dumps(SETUP, indent=4),"\n")
@@ -30,13 +31,13 @@ print("\nCONFIG:\n",json.dumps(SETUP, indent=4),"\n")
 def testSerial():
     try:
         conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
-        sleep(1)
-        conn.setDTR(False)
-        sleep(1)
+
+
+
         conn.write(b"con_test\n")
         answer = conn.readline()
-        print(answer)
         answer = answer[:len(answer)-len(b"\r\n")].decode("UTF-8")
+        print(answer)
         if answer =="success":
             SETUP["Serial"]=True
         else:
@@ -44,6 +45,7 @@ def testSerial():
         conn.close()
     except Exception as e:
         SETUP["Serial"]=False
+        print(e)
 
 #DO NOT CHANGE SCOPES VARIABLE
 SCOPES = 'https://www.googleapis.com/auth/calendar.readonly'
@@ -108,17 +110,17 @@ print(user)
 #test connection, config and or user input
 if is_connected("www.google.com") and (user == "y" or user == "yes"):
     print("writing events to configs/events.json\n")
-    sleep(1)
+
     calendar()
 elif user=="noconnect":
     print("no connection, calendar not loaded")
-    sleep(1)
+
 elif user == "n" or user == "no" or user == "":
     print("Calendar not loaded")
-    sleep(1)
+
 elif user =="disconf":
     print("loading Calendar disabled in configs/main.conf")
-    sleep(1)
+
 #get info from SETUP (SETUP takes the main.conf file as JSON input)
 color = SETUP["color"]
 header_draw = SETUP["header_draw"]
@@ -355,9 +357,9 @@ while run:
             print(select)
             import serial
             conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
-            sleep(1)
-            conn.setDTR(False)
-            sleep(1)
+
+
+
             conn.write(b"con_start\n")
             answer = conn.readline()
             print(answer)
@@ -366,9 +368,9 @@ while run:
             # print("test1")
             if answer=="Ready":
                 # print("test")
-                sleep(1)
-                conn.setDTR(False)
-                sleep(1)
+
+
+
                 conn.write(b"req_ID\n")
                 answer = conn.readline()
                 answer = answer[:len(answer)-len(b"\r\n")].decode("UTF-8")
@@ -409,9 +411,9 @@ while run:
             print(select)
             import serial
             conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
-            sleep(1)
-            conn.setDTR(False)
-            sleep(1)
+
+
+
             conn.write(b"con_start\n")
             answer = conn.readline()
             print(answer)
@@ -425,9 +427,9 @@ while run:
                 win.blit(text,(pos[0]+(items.oneph*4),pos[1]+(items.oneph*4)))
                 pygame.display.update()
                 # print("test")
-                sleep(1)
-                conn.setDTR(False)
-                sleep(1)
+
+
+
                 conn.write(b"req_write\n")
                 answer = conn.readline()
                 answer = answer[:len(answer)-len(b"\r\n")].decode("UTF-8")
@@ -456,9 +458,9 @@ while run:
             print(select)
             import serial
             conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
-            sleep(1)
-            conn.setDTR(False)
-            sleep(1)
+
+
+
             conn.write(b"con_start\n")
             answer = conn.readline()
             print(answer)
@@ -467,9 +469,9 @@ while run:
             print("test1")
             if answer=="Ready":
                 print("test")
-                sleep(1)
-                conn.setDTR(False)
-                sleep(1)
+
+
+
                 conn.write(b"req_ID\n")
                 answer = conn.readline()
                 answer = answer[:len(answer)-len(b"\r\n")].decode("UTF-8")
@@ -518,9 +520,9 @@ while run:
             print(select)
             import serial
             conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
-            sleep(1)
-            conn.setDTR(False)
-            sleep(1)
+
+
+
             conn.write(b"con_start\n")
             answer = conn.readline()
             print(answer)
@@ -529,9 +531,9 @@ while run:
             print("test1")
             if answer=="Ready":
                 print("test")
-                sleep(1)
-                conn.setDTR(False)
-                sleep(1)
+
+
+
                 conn.write(b"req_ID\n")
                 answer = conn.readline()
                 answer = answer[:len(answer)-len(b"\r\n")].decode("UTF-8")
@@ -569,9 +571,9 @@ while run:
             print(select)
             import serial
             conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
-            sleep(1)
-            conn.setDTR(False)
-            sleep(1)
+
+
+
             conn.write(b"con_start\n")
             answer = conn.readline()
             print(answer)
@@ -580,9 +582,9 @@ while run:
             print("test1")
             if answer=="Ready":
                 print("test")
-                sleep(1)
-                conn.setDTR(False)
-                sleep(1)
+
+
+
                 conn.write(b"req_ID\n")
                 answer = conn.readline()
                 answer = answer[:len(answer)-len(b"\r\n")].decode("UTF-8")
