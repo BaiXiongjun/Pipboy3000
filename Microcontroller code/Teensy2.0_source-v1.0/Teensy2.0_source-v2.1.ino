@@ -3,25 +3,40 @@
 #include <MFRC522.h>
 
 //setup for RFID
-#define RST_PIN         4           // Configurable, see typical pin layout above
-#define SS_PIN          0           // Configurable, see typical pin layout above
+#define RST_PIN         4
+#define SS_PIN          0
 MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance
 
-//Setup for one Rotary encoder
-#define outputA0 18             // output 1 (CLK) of rotary encoder
-#define outputB0 19             // output 2 (DT) of rotary encoder
+//Setup for Rotary encoders
+#define outputA0 5             // output 1 (CLK) of rotary encoder 0 
+#define outputB0 6             // output 2 (DT) of rotary encoder 0 
 
-#define btnTimeout 500          // timeout for the switch
+#define btnTimeout 500         // timeout for the switch
 
-#define outputA1 15             // output 1 (CLK) of rotary encoder
-#define outputB1 16             // output 2 (DT) of rotary encoder
-#define switch 17               // button (SW) otput of rotary encoder
+#define outputA1 7             // output 1 (CLK_0) of rotary encodern 1
+#define outputB1 8             // output 2 (DT_0) of rotary encoder 1
+#define switch 9               // button (SW) otput of rotary encoder
 
-#define Stats 12
-#define Items 13
-#define Data 14
+#define outputA2 22            // output 1 (CLK_1) of rotary encoder 1
+#define outputB2 23            // output 1 (CLK_1) of rotary encoder 1
+
+//tab selector buttons
+#define Stats 11
+#define Stats_LED 14
+#define Items 12
+#define Items_LED 15
+#define Data 13
+#define Data_LED 16
+
+//rotary switch
+#define rot_switch_0 17
+#define rot_switch_1 18
+#define rot_switch_2 19
+#define rot_switch_3 20
+#define rot_switch_4 21
 
 //create Variables
+
 String inputString = "";        // a String to hold incoming data
 bool stringComplete = false;    // whether the string is complete
 int timeout = millis();         // timeout variable for button spam prevention
@@ -33,7 +48,7 @@ int a0State = 0;                 // output 1 of Rotary encoder 0
 int a0LastState = 0;             // last state of output 1
 int a1State = 0;                 // output 1 of Rotary encoder 1
 int a1LastState = 0;             // last state of output 1
-
+bool con_init = false;
 //SETUP
 void setup() {
 
@@ -42,10 +57,22 @@ void setup() {
   // reserve 50 bytes for the inputString:
   inputString.reserve(50);
 
+  //rotary switch array
+  pinMode(rot_switch_0, INPUT);
+  pinMode(rot_switch_1, INPUT);
+  pinMode(rot_switch_2, INPUT);
+  pinMode(rot_switch_3, INPUT);
+  pinMode(rot_switch_4, INPUT);
+
   // button setup
   pinMode(Stats, INPUT);
+  pinMode(Stats_LED, OUTPUT);
+
   pinMode(Items, INPUT);
+  pinMode(Items_LED, OUTPUT);
+
   pinMode(Data, INPUT);
+  pinMode(Data_LED, OUTPUT);
 
   //rotary encoder
   pinMode(switch, INPUT);
@@ -64,7 +91,8 @@ void setup() {
 }
 
 void loop() {
-  buttons();
+  int thing[3] = {0, 0, 0};
+  buttons(thing);             // read buttons and handle LEDs
   wheel0();                     // read rotary encoder0 (scrollwheel)
   wheel1();                     // read rotary encoder 1 (option select)
   readRFID();                   // SERIAL read and RFID
@@ -75,7 +103,7 @@ void loop() {
 
 
 
-void buttons() {
+void buttons(int btn[3]) {
   now = millis();               //get current execution time
   // do something if button has bee pressed
   if (digitalRead(switch) == 0 && now - timeout >= btnTimeout) {
@@ -88,24 +116,42 @@ void buttons() {
   }
 
 
-  if (digitalRead(Stats) == 0) {
-    Keyboard.press(KEY_1);
-    delay(25);
-    Keyboard.release(KEY_1);
-    delay(50);
-  } else {}
-  if (digitalRead(Items) == 0) {
-    Keyboard.press(KEY_2);
-    delay(25);
-    Keyboard.release(KEY_2);
-    delay(50);
-  } else {}
-  if (digitalRead(Data) == 0) {
-    Keyboard.press(KEY_3);
-    delay(25);
-    Keyboard.release(KEY_3);
-    delay(50);
-  } else {}
+  if ((digitalRead(Stats) == 0 || btn[0] == 1) && now - timeout >= btnTimeout) {
+    digitalWrite(Items_LED, 0);
+    digitalWrite(Stats_LED, 1);
+    digitalWrite(Data_LED, 0);
+    if (btn[0] == 0) {
+      Keyboard.press(KEY_1);
+      delay(25);
+      Keyboard.release(KEY_1);
+      delay(50);
+      timeout = millis();
+    }
+  }
+  if ((digitalRead(Items) == 0 || btn[1] == 1) && now - timeout >= btnTimeout) {
+    digitalWrite(Items_LED, 1);
+    digitalWrite(Stats_LED, 0);
+    digitalWrite(Data_LED, 0);
+    if (btn[1] == 0) {
+      Keyboard.press(KEY_2);
+      delay(25);
+      Keyboard.release(KEY_2);
+      delay(50);
+      timeout = millis();
+    }
+  }
+  if ((digitalRead(Data) == 0 || btn[2] == 1) && now - timeout >= btnTimeout) {
+    digitalWrite(Items_LED, 0);
+    digitalWrite(Stats_LED, 0);
+    digitalWrite(Data_LED, 1);
+    if (btn[2] == 0) {
+      Keyboard.press(KEY_3);
+      delay(25);
+      Keyboard.release(KEY_3);
+      delay(50);
+      timeout = millis();
+    }
+  }
 
 }
 
@@ -166,20 +212,39 @@ void readRFID() {
   // print the string when a newline arrives:
 
   if (stringComplete) {
-    //Serial.print(inputString + " " + req);
-    digitalWrite(13, 1);
+    //Serial.println(strtok(char(inputString*),"-"));
+
     if (inputString == "con_test") {
       Serial.println("success");
       inputString = "";
       stringComplete = false;
     }
-    if (inputString == "con_start") {
+    if (inputString == "con_init") {
+      con_init = true;
+      Serial.println("Ready");
+      inputString = "";
+      stringComplete = false;
+    }
+    if (con_init && inputString.indexOf("con_setup") != -1) {
+      char selected[1] = {inputString[inputString.indexOf(":") + 1]};
+      int sel[3][3] = {
+        {1, 0, 0},
+        {0, 1, 0},
+        {0, 0, 1}
+      };
+      buttons(sel[atoi(selected)]);
+      Serial.println("con_setup-SETUP:SUCCESS");
+      con_init = false;
+      inputString = "";
+      stringComplete = false;
+    }
+    if (inputString == "con_start" && !con_init) {
       Serial.println("Ready");
       req = true;
       inputString = "";
       stringComplete = false;
     }
-    if (inputString == "req_write" && req) {
+    if (inputString == "req_write" && req && !con_init) {
       mfrc522.PCD_Init();
       MFRC522::MIFARE_Key key;
       for (byte i = 0; i < 6; i++) key.keyByte[i] = 0xFF;
@@ -226,7 +291,7 @@ void readRFID() {
       stringComplete = false;
 
     }
-    if (inputString == "req_ID" && req) {
+    if (inputString == "req_ID" && req && !con_init) {
       mfrc522.PCD_Init();
       if (ID) {
         Serial.println("req_ID-READ:START");
@@ -271,12 +336,20 @@ void readRFID() {
 
       }
     }
-    if (inputString == "req_exit" && req) {
-      req = false;
-      Serial.write("req_exit-SUCCESS:CON_END\n");
+    if (inputString == "con_exit") {
+      if (con_init) {
+        con_init = false;
+        Serial.write("con_exit-SUCCESS:CON_END\n");
+      }
+      if (req) {
+        req = false;
+        Serial.write("con_exit-SUCCESS:CON_END\n");
+      }
+
       inputString = "";
       stringComplete = false;
     }
-
+    inputString = "";
+    stringComplete = false;
   }
 }
