@@ -27,7 +27,23 @@ print(SETUP["Ports"][OS])
 
 
 print("\nCONFIG:\n",json.dumps(SETUP, indent=4),"\n")
-
+def initTeensy(state=0):
+    try:
+        conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
+        conn.write(b"con_init\n")
+        answer = conn.readline()
+        answer = answer[:len(answer)-len(b"\r\n")].decode("UTF-8")
+        print(answer)
+        if answer =="Ready":
+            print(("con_setup:"+str(state)+"\n").encode("UTF-8"))
+            conn.write(("con_setup:"+str(state)+"\n").encode("UTF-8"))
+            answer = conn.readline()
+            answer = answer[:len(answer)-len(b"\r\n")].decode("UTF-8")
+            print(answer)
+        conn.close()
+    except Exception as e:
+        print("connection failed!!\n")
+        print(e)
 def testSerial():
     try:
         conn = serial.Serial(SETUP["Ports"][OS],timeout=20)
@@ -159,6 +175,8 @@ select={
 'buttons':1,
 'selectors':[0,0]
 }
+initTeensy(select["buttons"])
+
 #this is the setup part, here i create the tabs
 head = gui.header.head(win, winsize,header_draw, color,font,SETUP["player"])
 SETUP["player"] = head.player
@@ -618,7 +636,16 @@ while run:
         elif SETUP["Serial"] == False:
             print("No Serial Connection possible")
         set+=1
-
+    if keys[pygame.K_4]:
+        select["knob"]=0
+    if keys[pygame.K_5]:
+        select["knob"]=1
+    if keys[pygame.K_6]:
+        select["knob"]=2
+    if keys[pygame.K_7]:
+        select["knob"]=3
+    if keys[pygame.K_8]:
+        select["knob"]=4
 
     if select['buttons'] == 0:
         head.title = "STATS"
