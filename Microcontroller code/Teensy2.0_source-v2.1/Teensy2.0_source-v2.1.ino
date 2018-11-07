@@ -29,11 +29,13 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);   // Create MFRC522 instance
 #define Data_LED 16
 
 //rotary switch
-#define rot_switch_0 17
-#define rot_switch_1 18
-#define rot_switch_2 19
-#define rot_switch_3 20
-#define rot_switch_4 21
+int rot_switch[5] = {
+  17,
+  18,
+  19,
+  20,
+  21
+};
 
 //create Variables
 
@@ -49,6 +51,9 @@ int a0LastState = 0;             // last state of output 1
 int a1State = 0;                 // output 1 of Rotary encoder 1
 int a1LastState = 0;             // last state of output 1
 bool con_init = false;
+int pos_state[5] = {0, 0, 0, 0, 0};
+int pos_prev[5] = {0, 0, 0, 0, 0};
+
 //SETUP
 void setup() {
 
@@ -58,11 +63,10 @@ void setup() {
   inputString.reserve(50);
 
   //rotary switch array
-  pinMode(rot_switch_0, INPUT);
-  pinMode(rot_switch_1, INPUT);
-  pinMode(rot_switch_2, INPUT);
-  pinMode(rot_switch_3, INPUT);
-  pinMode(rot_switch_4, INPUT);
+  for (int i = 0; i < sizeof(rot_switch); i++) {
+    pinMode(i, INPUT);
+  }
+
 
   // button setup
   pinMode(Stats, INPUT);
@@ -96,12 +100,23 @@ void loop() {
   wheel0();                     // read rotary encoder0 (scrollwheel)
   wheel1();                     // read rotary encoder 1 (option select)
   readRFID();                   // SERIAL read and RFID
-
+  rotarySwitch();
 }
-
-
-
-
+void rotarySwitch() {
+  for(int i=0;i<=4;i++){
+    pos_state[i] = digitalRead(rot_switch[i]);
+    if(pos_state[i]==pos_prev[i]){
+      continue;
+    }else{
+      
+      pos_prev[i]=pos_state[i];
+      if(pos_state[i]==0){
+        //Serial.println((char)i+4);
+        Keyboard.print((char)i+4);
+      }
+    }
+  }
+}
 
 void buttons(int btn[3]) {
   now = millis();               //get current execution time
