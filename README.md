@@ -7,9 +7,9 @@ This code is neither efficient, nor does it look good, I know that very well, bu
 <h1>REQUIREMENTS!!!</h1>
 This program requires the following things:
 <ul>
-  <li>1. Python 3.5+</li>
-  <li>2. Pygame </li>
-  <li>3. Google API Python Client</li>
-  <li>4. Pyserial</li>
+  <li>Python 3.5+</li>
+  <li>Pygame </li>
+  <li>Google API Python Client</li>
+  <li>Pyserial</li>
   </ul>
 
