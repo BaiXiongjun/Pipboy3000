@@ -8,4 +8,6 @@ This code is neither efficient, nor does it look good, I know that very well, bu
 This program requires the following things:
 1. Python 3.5+
 2. Pygame 
-3. Google
+3. Google API Python Client
+4. Pyserial
+
