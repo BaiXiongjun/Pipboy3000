@@ -6,8 +6,10 @@ This code is neither efficient, nor does it look good, I know that very well, bu
 
 <h1>REQUIREMENTS!!!</h1>
 This program requires the following things:
-1. Python 3.5+
-2. Pygame 
-3. Google API Python Client
-4. Pyserial
+<ul>
+  <li>1. Python 3.5+</li>
+  <li>2. Pygame </li>
+  <li>3. Google API Python Client</li>
+  <li>4. Pyserial</li>
+  </ul>
 
